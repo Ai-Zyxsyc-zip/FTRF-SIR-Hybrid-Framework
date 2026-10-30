@@ -5,23 +5,23 @@ This repository contains the analysis code for the manuscript **"Integrating Tra
 ## Repository structure
 
 - `FTRF_SIR_Rebuilt/code/`: primary Python forecasting, scoring, validation, summarization, and plotting scripts.
+- `FTRF_SIR_Rebuilt/data/raw/`: original CDC CSV files at the paths used directly by the Python and R analyses.
+- `data/`: a central copy of the complete original-data set for convenient inspection and archiving.
 - `R_scientific_revision/`: additional R analyses and their Python summarization and plotting scripts.
 - `ILI/`, `CLs/`, `CPT/`, and `PHLs/`: R entry scripts for the corresponding surveillance outcomes.
 
-The repository contains source code only. Input data and generated results are not included.
+The repository includes the source code and the archived input data used in the study. The same four original CSV files are stored in both data locations listed above so that the analysis scripts run without path changes while the complete input set remains available in one central directory.
 
 ## Data preparation
 
-The analyses use aggregate U.S. state-level influenza surveillance records from the [CDC FluView portal](https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html). No patient-level data are used.
-
-Place the following exported CSV files in `FTRF_SIR_Rebuilt/data/raw/`:
+The analyses use aggregate U.S. state-level influenza surveillance records from the [CDC FluView portal](https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html). No patient-level data are used. The archived CSV files required by the scripts are already included in `FTRF_SIR_Rebuilt/data/raw/`:
 
 - `ILINet.csv`
 - `WHO_NREVSS_Clinical_Labs.csv`
 - `WHO_NREVSS_Combined_prior_to_2015_16.csv`
 - `WHO_NREVSS_Public_Health_Labs.csv`
 
-CDC surveillance records may be revised retrospectively. Reproduction of the reported numerical values requires the same archived data snapshots used in the study.
+Identical copies are provided in the top-level `data/` directory. CDC surveillance records may be revised retrospectively; the included snapshots preserve the inputs used for the reported analysis.
 
 ## Python environment
 

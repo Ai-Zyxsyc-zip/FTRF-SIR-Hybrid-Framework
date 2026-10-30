@@ -12,7 +12,6 @@ PHLs/*.png
 # 忽略整个文件夹
 new_project/
 result/
-data/
 
 # 忽略根目录下五个 R 脚本
 /funcs.R
