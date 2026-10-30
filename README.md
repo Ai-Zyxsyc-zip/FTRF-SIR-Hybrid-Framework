@@ -1,31 +1,31 @@
-# FTRF-SIR influenza forecasting code
+# FTRF-SIR influenza forecasting
 
-This repository contains the analysis code for the manuscript **"Integrating Transfer Learning with Epidemic Dynamics: A Hybrid FTRF-SIR Framework for Robust Infectious Disease Forecasting."** The implementation combines susceptible--infectious--removed forecasts, random forest residual correction, and predictions transferred from source regions.
+This repository contains the code and archived input data used for the FTRF-SIR influenza forecasting study. The analysis combines forecasts from a susceptible--infectious--removed model with random-forest residual learning and information transferred from source regions.
 
-## Repository structure
+## Contents
 
-- `FTRF_SIR_Rebuilt/code/`: primary Python forecasting, scoring, validation, summarization, and plotting scripts.
-- `FTRF_SIR_Rebuilt/data/raw/`: original CDC CSV files at the paths used directly by the Python and R analyses.
-- `data/`: a central copy of the complete original-data set for convenient inspection and archiving.
-- `R_scientific_revision/`: additional R analyses and their Python summarization and plotting scripts.
-- `ILI/`, `CLs/`, `CPT/`, and `PHLs/`: R entry scripts for the corresponding surveillance outcomes.
+- `FTRF_SIR_Rebuilt/code/` contains the main Python analysis.
+- `FTRF_SIR_Rebuilt/data/raw/` contains the four CSV files read by the Python and R scripts.
+- `data/` contains a second, central copy of the same four input files.
+- `R_scientific_revision/` contains the additional R analysis and its Python summary scripts.
+- `ILI/`, `CLs/`, `CPT/`, and `PHLs/` contain the R entry scripts for the four surveillance outcomes.
 
-The repository includes the source code and the archived input data used in the study. The same four original CSV files are stored in both data locations listed above so that the analysis scripts run without path changes while the complete input set remains available in one central directory.
+The files in `data/` and `FTRF_SIR_Rebuilt/data/raw/` are identical. The second copy is intentional: `data/` keeps the original inputs together, while `FTRF_SIR_Rebuilt/data/raw/` preserves the paths used by the analysis. After cloning the repository, no data files need to be moved.
 
-## Data preparation
+## Data
 
-The analyses use aggregate U.S. state-level influenza surveillance records from the [CDC FluView portal](https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html). No patient-level data are used. The archived CSV files required by the scripts are already included in `FTRF_SIR_Rebuilt/data/raw/`:
+The input files are archived exports of aggregate U.S. state-level influenza surveillance data from the [CDC FluView portal](https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html):
 
 - `ILINet.csv`
 - `WHO_NREVSS_Clinical_Labs.csv`
 - `WHO_NREVSS_Combined_prior_to_2015_16.csv`
 - `WHO_NREVSS_Public_Health_Labs.csv`
 
-Identical copies are provided in the top-level `data/` directory. CDC surveillance records may be revised retrospectively; the included snapshots preserve the inputs used for the reported analysis.
+These files contain surveillance summaries rather than patient-level records. Because FluView data may be revised retrospectively, the copies in this repository should be used when reproducing the reported analysis.
 
-## Python environment
+## Python setup
 
-Python 3.10 or later is recommended. From the repository root, create an isolated environment and install the required packages:
+Python 3.10 or later is recommended. From the repository root:
 
 ```powershell
 python -m venv .venv
@@ -36,9 +36,9 @@ python -m pip install -r requirements.txt
 
 On Linux or macOS, activate the environment with `source .venv/bin/activate`.
 
-## Primary Python analysis
+## Main analysis
 
-Run the following commands from `FTRF_SIR_Rebuilt/code/`:
+Run the Python scripts from `FTRF_SIR_Rebuilt/code/` in the following order:
 
 ```powershell
 python prepare_data.py
@@ -51,13 +51,11 @@ python validate.py
 python validate_extension.py
 ```
 
-The scripts use fixed random seeds and historical response cutoffs. Forecasting methods within each comparison are evaluated on the same eligible target tasks. Generated predictions, summaries, and figures are written under `FTRF_SIR_Rebuilt/results/`.
-
-`plot_results.py` and `plot_extension.py` read saved result tables, so figures can be regenerated without refitting the forecasting models.
+The scripts write predictions, summary tables, and figures to `FTRF_SIR_Rebuilt/results/`. Plotting scripts read the saved tables, so figures can be redrawn without fitting the forecasting models again.
 
 ## Additional R analysis
 
-R 4.4 or later is recommended. The R analysis requires the `randomForest` package. From `R_scientific_revision/`, run:
+R 4.4 or later and the `randomForest` package are required. From `R_scientific_revision/`, run:
 
 ```powershell
 Rscript setup.R
@@ -68,15 +66,14 @@ python summarize.py
 python plot_paper.py
 ```
 
-This is a separate sensitivity implementation. Its sample limits, numerical SIR settings, optimization settings, and comparison models differ from those of the primary Python benchmark.
+This R analysis is a separate sensitivity analysis. Its sample limits, numerical SIR settings, optimization settings, and comparison models differ from those used in the main Python analysis.
 
 ## Reproducibility notes
 
-- Models use only outcomes available by the stated historical fitting cutoff.
-- Random seeds and model settings are defined in the source files.
-- Source-code comments are provided in English.
-- The validation scripts check numerical refinement, information cutoffs, common evaluation tasks, and saved-output consistency.
+- Model settings and random seeds are defined in the source files.
+- Forecasting methods in a given comparison use the same historical cutoffs and eligible target tasks.
+- Generated results and local software environments are not stored in Git; they are recreated by the scripts above.
 
 ## License
 
-The analysis code is released under the MIT License. See `LICENSE`. Data remain subject to the terms and attribution requirements of their original provider.
+The code is released under the MIT License. The CDC data retain the terms and attribution requirements of their original source.
