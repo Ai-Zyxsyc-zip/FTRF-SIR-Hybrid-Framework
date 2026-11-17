@@ -13,6 +13,16 @@
 *.ppt
 *.pptx
 
+# Final result figures shared with the analysis code.
+!/figures/**/*.pdf
+
+# Local handoff and submission materials.
+/IDM_FTRF_SIR_Complete_Package/
+/IDM_FTRF_SIR/
+/FTRF-SIR/
+/required_uploads/
+/Supplementary_Material_Editable/
+
 # Local instructions and application settings.
 /AGENTS.md
 /.agents/

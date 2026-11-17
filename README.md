@@ -1,14 +1,16 @@
 # FTRF-SIR influenza forecasting
 
-This repository contains the code and archived input data used for the FTRF-SIR influenza forecasting study. The analysis combines forecasts from a susceptible--infectious--removed model with random-forest residual learning and information transferred from source regions.
+This repository contains the code, archived input data, and result figures for the FTRF-SIR influenza forecasting study. The model combines a susceptible–infectious–removed (SIR) forecast with random-forest residual learning and predictions transferred from source regions.
 
 ## Contents
 
-- `FTRF_SIR_Rebuilt/code/` contains the main Python analysis.
-- `FTRF_SIR_Rebuilt/data/raw/` contains the four CSV files read by the Python and R scripts.
-- `data/` contains a second, central copy of the same four input files.
-- `R_scientific_revision/` contains the additional R analysis and its Python summary scripts.
-- `ILI/`, `CLs/`, `CPT/`, and `PHLs/` contain the R entry scripts for the four surveillance outcomes.
+- `FTRF_SIR_Rebuilt/code/`: Python data preparation, forecasting, simulation, scoring, statistical comparisons, and plotting.
+- `R_scientific_revision/`: the five conditional-regression tasks, additional weekly forecasts, and full-predictor simulations, with Python summary and plotting scripts.
+- `ILI/`, `CLs/`, `CPT/`, and `PHLs/`: the original R entry scripts, which call the shared analysis.
+- `data/` and `FTRF_SIR_Rebuilt/data/raw/`: the four archived input CSV files.
+- [`figures/main/`](figures/main/): six result figures from the main text, Figures 2–7.
+- [`figures/supplement/`](figures/supplement/): five supplementary result figures, Figures S1–S5.
+- [`FIGURE_SOURCES.md`](FIGURE_SOURCES.md): the data, code, and plotting choices behind each result figure.
 
 The files in `data/` and `FTRF_SIR_Rebuilt/data/raw/` are identical. The second copy is intentional: `data/` keeps the original inputs together, while `FTRF_SIR_Rebuilt/data/raw/` preserves the paths used by the analysis. After cloning the repository, no data files need to be moved.
 
@@ -25,12 +27,11 @@ These files contain surveillance summaries rather than patient-level records. Be
 
 ## Python setup
 
-Python 3.10 or later is recommended. From the repository root:
+Use Python 3.13 and the pinned dependencies, which record the saved analysis environment. From the repository root:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
@@ -38,41 +39,58 @@ On Linux or macOS, activate the environment with `source .venv/bin/activate`.
 
 ## Main analysis
 
-Run the Python scripts from `FTRF_SIR_Rebuilt/code/` in the following order:
+Run all commands from the repository root. Before the first run, create the output directories used by the scripts:
 
 ```powershell
-python prepare_data.py
-python run_forecasts.py
-python summarize.py
-python extension.py
-python summarize_extension.py
-python plot_extension.py
-python validate.py
-python validate_extension.py
+python -c "from pathlib import Path; [Path(p).mkdir(parents=True, exist_ok=True) for p in ['FTRF_SIR_Rebuilt/results/tables','FTRF_SIR_Rebuilt/results/figures','FTRF_SIR_Rebuilt/audit','latex/English/figures','latex/Chinese/figures']]"
 ```
 
-The scripts write predictions, summary tables, and figures to `FTRF_SIR_Rebuilt/results/`. Plotting scripts read the saved tables, so figures can be redrawn without fitting the forecasting models again.
+The `latex/.../figures` directories are image output paths retained by the plotting code; the analysis does not require a TeX installation or manuscript source files.
+
+The principal sample-budget comparison uses:
+
+```powershell
+python FTRF_SIR_Rebuilt/code/prepare_data.py
+python FTRF_SIR_Rebuilt/code/extension.py --workers 4
+python FTRF_SIR_Rebuilt/code/summarize_extension.py
+python FTRF_SIR_Rebuilt/code/validate_extension.py
+```
+
+The earlier nine-model comparison and the separate parameter-transfer simulation use:
+
+```powershell
+python FTRF_SIR_Rebuilt/code/run_forecasts.py
+python FTRF_SIR_Rebuilt/code/posterior_experiment.py
+python FTRF_SIR_Rebuilt/code/summarize.py
+python FTRF_SIR_Rebuilt/code/posterior_rank_diagnostics.py
+python FTRF_SIR_Rebuilt/code/validate.py
+```
+
+Run `prepare_data.py` before either sequence. The parameter simulation must precede `summarize.py`, which reads both forecast and simulation results. These analyses use different evaluation designs; their results are reported separately.
+
+Predictions and summaries are written to `FTRF_SIR_Rebuilt/results/extension/` for the principal comparison and `FTRF_SIR_Rebuilt/results/tables/` for the earlier comparison and parameter simulation.
 
 ## Additional R analysis
 
-R 4.4 or later and the `randomForest` package are required. From `R_scientific_revision/`, run:
+R 4.4 or later and the `randomForest` package are required. From the repository root, run:
 
 ```powershell
-Rscript setup.R
-Rscript run.R
-Rscript forecast.R
-Rscript validate.R
-python summarize.py
-python plot_paper.py
+Rscript R_scientific_revision/setup.R
+Rscript R_scientific_revision/run.R
+Rscript R_scientific_revision/forecast.R
+Rscript R_scientific_revision/save_simulation_truth.R
+Rscript R_scientific_revision/validate.R
+python R_scientific_revision/summarize.py
 ```
 
-This R analysis is a separate sensitivity analysis. Its sample limits, numerical SIR settings, optimization settings, and comparison models differ from those used in the main Python analysis.
+`setup.R` installs `randomForest` in a project-local library. The scripts save results in `R_scientific_revision/results/`. This analysis has different outcomes, sample limits, numerical SIR settings, and comparison models from the principal Python analysis.
 
 ## Reproducibility notes
 
 - Model settings and random seeds are defined in the source files.
 - Forecasting methods in a given comparison use the same historical cutoffs and eligible target tasks.
-- Generated results and local software environments are not stored in Git; they are recreated by the scripts above.
+- The repository includes the raw snapshots and eleven final result figures. Intermediate result CSV files and local software environments are generated by the analysis and are not stored in Git.
+- Each figure's source script and generated input tables are identified in [FIGURE_SOURCES.md](FIGURE_SOURCES.md).
 
 ## License
 
