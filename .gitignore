@@ -40,14 +40,28 @@
 /result/
 
 # Generated analysis output. Source code and raw data remain trackable.
-/FTRF_SIR_Rebuilt/results/
+/FTRF_SIR_Rebuilt/results/*
+!/FTRF_SIR_Rebuilt/results/extension/
+/FTRF_SIR_Rebuilt/results/extension/*
+!/FTRF_SIR_Rebuilt/results/extension/summary.csv
+!/FTRF_SIR_Rebuilt/results/extension/paired.csv
+!/FTRF_SIR_Rebuilt/results/extension/horizons.csv
+!/FTRF_SIR_Rebuilt/results/tables/
+/FTRF_SIR_Rebuilt/results/tables/*
+!/FTRF_SIR_Rebuilt/results/tables/posterior_metrics.csv
+!/FTRF_SIR_Rebuilt/results/tables/posterior_samples.csv
 /FTRF_SIR_Rebuilt/audit/
 /FTRF_SIR_Rebuilt/advisor_report_*/
 /FTRF_SIR_Rebuilt/README_CN.md
 /FTRF_SIR_Rebuilt/environment.yml
 /FTRF_SIR_Rebuilt/requirements.txt
 /FTRF_SIR_Rebuilt/run_all.py
-/R_scientific_revision/results/
+/R_scientific_revision/results/*
+!/R_scientific_revision/results/conditional_block_errors.csv
+!/R_scientific_revision/results/conditional_predictions.csv
+!/R_scientific_revision/results/forecast_summary.csv
+!/R_scientific_revision/results/simulation_summary.csv
+!/R_scientific_revision/results/forecast_predictions.csv
 /R_scientific_revision/figures/
 /R_scientific_revision/library/
 /R_scientific_revision/README.md

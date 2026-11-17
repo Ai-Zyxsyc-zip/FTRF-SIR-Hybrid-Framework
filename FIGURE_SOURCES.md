@@ -1,6 +1,8 @@
 # Sources of the manuscript result figures
 
-The six main-text result figures are in `figures/main/`, and the five supplementary figures are in `figures/supplement/`. The CSV paths below identify outputs produced by the analysis scripts. The repository includes the raw inputs and final figure PDFs; intermediate result tables are generated during analysis.
+The six main-text result figures are in `figures/main/`, and the five supplementary figures are in `figures/supplement/`. All ten CSV files read by these figures' plotting routines are included at the paths below. They were saved during the study's analysis.
+
+[`FIGURE_PROVENANCE.json`](FIGURE_PROVENANCE.json) links each figure to its plotting script and input tables and records their SHA-256 checksums. Raw-data checksums and CSV schemas are recorded there as well.
 
 RMSE denotes root mean squared error, and WIS denotes weighted interval score. The plotting code reads the calculated scores or saved predictions identified below.
 

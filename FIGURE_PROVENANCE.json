@@ -1,0 +1,483 @@
+{
+  "schema_version": 1,
+  "study": "FTRF-SIR influenza forecasting",
+  "archived_on": "2026-11-17",
+  "analysis_code_commit": "471fc409b75bfb6549d5d91cb1fc255a89ca0015",
+  "verification_scope": "Static file integrity and CSV schema checks. No fitting, scoring or plotting was run for this archival update.",
+  "raw_inputs": [
+    {
+      "path": "data/ILINet.csv",
+      "bytes": 2329928,
+      "sha256": "0b99493128c9c0299b0b256343729da4cbb143bba8e92f06ce80b4bb29c52fd8",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 2329928
+    },
+    {
+      "path": "data/WHO_NREVSS_Clinical_Labs.csv",
+      "bytes": 1108709,
+      "sha256": "92a6eb5fb18d218b47d017ace1effef5d36806ed37a0d2576862da8afaab04a4",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 1108709
+    },
+    {
+      "path": "data/WHO_NREVSS_Combined_prior_to_2015_16.csv",
+      "bytes": 680870,
+      "sha256": "0794235f7873890c3f00e3d71b78f1bebdfba66ea381c7b24e75964f5d0f2b5e",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 680870
+    },
+    {
+      "path": "data/WHO_NREVSS_Public_Health_Labs.csv",
+      "bytes": 28730,
+      "sha256": "c0e8a8793244ffc596f6af018e758638f8d2751961b9c0739c5eecb3ca31ff85",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 28730
+    }
+  ],
+  "plotting_tables": [
+    {
+      "path": "FTRF_SIR_Rebuilt/results/extension/horizons.csv",
+      "bytes": 137761,
+      "sha256": "088eea151d475313ba8bea89c6f75dcd6b4ce319369860fecac9c939448dc195",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 137022,
+      "columns": [
+        "dataset",
+        "budget",
+        "horizon",
+        "method",
+        "interval",
+        "n",
+        "mse",
+        "mae",
+        "wis",
+        "coverage95",
+        "width95",
+        "local_seconds",
+        "source_seconds",
+        "rmse",
+        "coverage_error95"
+      ],
+      "rows": 738
+    },
+    {
+      "path": "FTRF_SIR_Rebuilt/results/extension/paired.csv",
+      "bytes": 219507,
+      "sha256": "377de449ea22af5e69878f06e6f88cd681789ae67789635790df69c1beda807f",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 217682,
+      "columns": [
+        "dataset",
+        "budget",
+        "interval",
+        "metric",
+        "method",
+        "reference",
+        "delta",
+        "lo95",
+        "hi95",
+        "clusters",
+        "fraction_better"
+      ],
+      "rows": 1824
+    },
+    {
+      "path": "FTRF_SIR_Rebuilt/results/extension/summary.csv",
+      "bytes": 46032,
+      "sha256": "a574967598014c130442aeb817728269faa8da05d789402e4f82600172a947b0",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 45785,
+      "columns": [
+        "dataset",
+        "budget",
+        "method",
+        "interval",
+        "n",
+        "mse",
+        "mae",
+        "wis",
+        "coverage95",
+        "width95",
+        "local_seconds",
+        "source_seconds",
+        "rmse",
+        "coverage_error95"
+      ],
+      "rows": 246
+    },
+    {
+      "path": "FTRF_SIR_Rebuilt/results/tables/posterior_metrics.csv",
+      "bytes": 35558,
+      "sha256": "c018f2958a2b49c7e0a6427874cb876b3fac62318e81a982801615fc3d9ba262",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 35437,
+      "columns": [
+        "scenario",
+        "rep",
+        "prior",
+        "method",
+        "nll",
+        "rmse",
+        "mae",
+        "coverage95",
+        "width95",
+        "beta_error",
+        "gamma_error",
+        "wasserstein_std",
+        "mmd2",
+        "seconds",
+        "source_seconds",
+        "ess",
+        "rhat",
+        "acceptance",
+        "edge_mass",
+        "prior_log_beta",
+        "prior_log_gamma",
+        "prior_sd_beta",
+        "prior_sd_gamma"
+      ],
+      "rows": 120
+    },
+    {
+      "path": "FTRF_SIR_Rebuilt/results/tables/posterior_samples.csv",
+      "bytes": 50360618,
+      "sha256": "ac0b607db446e8e282b7e5da7f173f24ac68220321bc6679701120bbdc9126fd",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 49624617,
+      "columns": [
+        "scenario",
+        "rep",
+        "prior",
+        "method",
+        "draw",
+        "chain",
+        "beta",
+        "gamma"
+      ],
+      "rows": 736000
+    },
+    {
+      "path": "R_scientific_revision/results/conditional_block_errors.csv",
+      "bytes": 268025,
+      "sha256": "a436f6ca92b390d71396879efee915591775e73d26d75898020f1dc5b32359dd",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 262130,
+      "columns": [
+        "task",
+        "target",
+        "cutoff",
+        "model",
+        "SE"
+      ],
+      "rows": 5894
+    },
+    {
+      "path": "R_scientific_revision/results/conditional_predictions.csv",
+      "bytes": 1801516,
+      "sha256": "ee6c14037b061b80d1bfc0f938afa55a0666956bdf6874ef182c9a09e165702d",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 1778317,
+      "columns": [
+        "task",
+        "target",
+        "cutoff",
+        "test_time",
+        "model",
+        "observed",
+        "predicted",
+        "seed",
+        "train_n",
+        "source_n"
+      ],
+      "rows": 23198
+    },
+    {
+      "path": "R_scientific_revision/results/forecast_predictions.csv",
+      "bytes": 282533,
+      "sha256": "a472f3921e8105e5c535f8932809787230c3a2909db850cfa93bc86d40230b21",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 279373,
+      "columns": [
+        "target",
+        "origin",
+        "test_time",
+        "h",
+        "model",
+        "observed",
+        "predicted",
+        "train_n",
+        "source_n",
+        "seed",
+        "task"
+      ],
+      "rows": 3159
+    },
+    {
+      "path": "R_scientific_revision/results/forecast_summary.csv",
+      "bytes": 2716,
+      "sha256": "8308f074cff519c669e46125de8dc723135b52c5427c5abfedb7451d068765ee",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 2688,
+      "columns": [
+        "task",
+        "model",
+        "MSE",
+        "MAE",
+        "N",
+        "RMSE",
+        "R2"
+      ],
+      "rows": 27
+    },
+    {
+      "path": "R_scientific_revision/results/simulation_summary.csv",
+      "bytes": 1837,
+      "sha256": "49eabef76a763e3f22f44d78b530d3623bc413938b026bd62db2ed67a4bea2a1",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 1818,
+      "columns": [
+        "condition",
+        "model",
+        "MSE",
+        "MAE",
+        "N",
+        "RMSE",
+        "R2"
+      ],
+      "rows": 18
+    }
+  ],
+  "scripts": [
+    {
+      "path": "FTRF_SIR_Rebuilt/code/extension.py",
+      "bytes": 10907,
+      "sha256": "e6e7d43724d20e1299e95050a0082417f579e687846ce97bc35ee928c90531bc",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 10715
+    },
+    {
+      "path": "FTRF_SIR_Rebuilt/code/plot_extension.py",
+      "bytes": 5449,
+      "sha256": "5a7da75108f45655e4016757c66025507a0c509b0faa9d8b20e13f8fc3084b19",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 5374
+    },
+    {
+      "path": "FTRF_SIR_Rebuilt/code/plot_results.py",
+      "bytes": 6507,
+      "sha256": "45c0eaf2fe65eef30e6dd05e7a7c2dfcf0a25d41f5cbf5268cb04bbc5b696b4c",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 6419
+    },
+    {
+      "path": "FTRF_SIR_Rebuilt/code/posterior_experiment.py",
+      "bytes": 9856,
+      "sha256": "22e6917f7684186a23fe49e8e48c6f511a8d68d73e0d1542adc8390728cf74fe",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 9856
+    },
+    {
+      "path": "FTRF_SIR_Rebuilt/code/summarize_extension.py",
+      "bytes": 10875,
+      "sha256": "78145b9dafae24fd59c2e35c939245e733db244ed178a0185c17afc1e2d906dc",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 10742
+    },
+    {
+      "path": "R_scientific_revision/forecast.R",
+      "bytes": 5658,
+      "sha256": "5a152cc830abb553ba4c7acc4105a520c5b94bb6ac46427889fcf64e58799a06",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 5582
+    },
+    {
+      "path": "R_scientific_revision/plot_paper.py",
+      "bytes": 4364,
+      "sha256": "780f0bd347a5819a4dcdcc935e84eea38fc513cadf22fd524b08a84f25d570b7",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 4286
+    },
+    {
+      "path": "R_scientific_revision/run.R",
+      "bytes": 6167,
+      "sha256": "63aaeba600fbffd8647ead37b3bbba35f73f909ed349a5c45cf6cdcb32ff7113",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 6167
+    },
+    {
+      "path": "R_scientific_revision/summarize.py",
+      "bytes": 11398,
+      "sha256": "d034e1bc8025d3960ebc88e465b28a7a7a8dffec6b8e6a4dd3120ad20ba40ec4",
+      "hash_mode": "lf_text",
+      "canonical_bytes": 11312
+    }
+  ],
+  "figures": [
+    {
+      "number": "2",
+      "section": "main",
+      "file": {
+        "path": "figures/main/ext_ablation.pdf",
+        "bytes": 15939,
+        "sha256": "1a3aa6e167a2bb01db04cb7287a8fdb258ea3c751952fac9db9272a48789985f",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "FTRF_SIR_Rebuilt/code/plot_extension.py",
+      "input_tables": [
+        "FTRF_SIR_Rebuilt/results/extension/paired.csv"
+      ],
+      "plotting_branch": "main()"
+    },
+    {
+      "number": "3",
+      "section": "main",
+      "file": {
+        "path": "figures/main/ext_learning.pdf",
+        "bytes": 23992,
+        "sha256": "141dffdf9d02dbaba9127632031d1f32c3211d5f370592d4cf4176afbce12c7d",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "FTRF_SIR_Rebuilt/code/plot_extension.py",
+      "input_tables": [
+        "FTRF_SIR_Rebuilt/results/extension/summary.csv"
+      ],
+      "plotting_branch": "main()"
+    },
+    {
+      "number": "4",
+      "section": "main",
+      "file": {
+        "path": "figures/main/ext_intervals.pdf",
+        "bytes": 15634,
+        "sha256": "3598cca660faab8a0a31e79c8ad7b052f0f4c9bc84e3303d23191349e81340a9",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "FTRF_SIR_Rebuilt/code/plot_extension.py",
+      "input_tables": [
+        "FTRF_SIR_Rebuilt/results/extension/summary.csv"
+      ],
+      "plotting_branch": "main()"
+    },
+    {
+      "number": "5",
+      "section": "main",
+      "file": {
+        "path": "figures/main/original_five_tasks.pdf",
+        "bytes": 19737,
+        "sha256": "4fe8582c9c2808b7f602f05131c19232846c1ccfd2487f62e6025a1a8a77a9dd",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "R_scientific_revision/plot_paper.py",
+      "input_tables": [
+        "R_scientific_revision/results/conditional_block_errors.csv",
+        "R_scientific_revision/results/conditional_predictions.csv"
+      ],
+      "plotting_branch": "main()"
+    },
+    {
+      "number": "6",
+      "section": "main",
+      "file": {
+        "path": "figures/main/forecast_comparison.pdf",
+        "bytes": 14214,
+        "sha256": "51a137a2271dae3870e519bcf150078d7c75b07a8b3cc13c6aa4a18f0c90c3d5",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "R_scientific_revision/plot_paper.py",
+      "input_tables": [
+        "R_scientific_revision/results/forecast_summary.csv"
+      ],
+      "plotting_branch": "main()"
+    },
+    {
+      "number": "7",
+      "section": "main",
+      "file": {
+        "path": "figures/main/simulation_comparison.pdf",
+        "bytes": 13012,
+        "sha256": "a35c8aba9a7163877b3ac34e034e17a337a8bdfe4b09d013916d5033ede9d318",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "R_scientific_revision/plot_paper.py",
+      "input_tables": [
+        "R_scientific_revision/results/simulation_summary.csv"
+      ],
+      "plotting_branch": "main()"
+    },
+    {
+      "number": "S1",
+      "section": "supplement",
+      "file": {
+        "path": "figures/supplement/ext_horizons.pdf",
+        "bytes": 18925,
+        "sha256": "759abce37ae0497325fc1d1c2046f70a1f7cdb3da574e3dd4aa72e96996756e9",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "FTRF_SIR_Rebuilt/code/plot_extension.py",
+      "input_tables": [
+        "FTRF_SIR_Rebuilt/results/extension/horizons.csv"
+      ],
+      "plotting_branch": "main()"
+    },
+    {
+      "number": "S2",
+      "section": "supplement",
+      "file": {
+        "path": "figures/supplement/ext_sources.pdf",
+        "bytes": 12219,
+        "sha256": "8dae0cf216d2299d67e9ec35c6084f060349dc040b9e5dd789e71900b97fe95e",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "FTRF_SIR_Rebuilt/code/plot_extension.py",
+      "input_tables": [
+        "FTRF_SIR_Rebuilt/results/extension/summary.csv"
+      ],
+      "plotting_branch": "main()"
+    },
+    {
+      "number": "S3",
+      "section": "supplement",
+      "file": {
+        "path": "figures/supplement/posterior_fidelity.pdf",
+        "bytes": 14358,
+        "sha256": "5f4155cf78d994f6a845bc5398c7ed9897618d6f0d2d1208a018be06197402f4",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "FTRF_SIR_Rebuilt/code/plot_results.py",
+      "input_tables": [
+        "FTRF_SIR_Rebuilt/results/tables/posterior_metrics.csv"
+      ],
+      "plotting_branch": "posterior_only=True"
+    },
+    {
+      "number": "S4",
+      "section": "supplement",
+      "file": {
+        "path": "figures/supplement/posterior_marginals.pdf",
+        "bytes": 15694,
+        "sha256": "407013ed045476147cbe674a442ccdc24c339a03aeef8c7541bc43e9defca7a9",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "FTRF_SIR_Rebuilt/code/plot_results.py",
+      "input_tables": [
+        "FTRF_SIR_Rebuilt/results/tables/posterior_samples.csv"
+      ],
+      "plotting_branch": "posterior_only=True"
+    },
+    {
+      "number": "S5",
+      "section": "supplement",
+      "file": {
+        "path": "figures/supplement/original_forecast_trajectories.pdf",
+        "bytes": 23100,
+        "sha256": "252531c79c7112cd367788b0c7079e0c26437fe5ae0fd056dd389a5fa0ad9d1b",
+        "hash_mode": "binary"
+      },
+      "plotting_script": "R_scientific_revision/plot_paper.py",
+      "input_tables": [
+        "R_scientific_revision/results/forecast_predictions.csv"
+      ],
+      "plotting_branch": "main()"
+    }
+  ]
+}
